@@ -9,7 +9,7 @@ const SideBar = () => {
   if (!isMenuOpen) return null;
 
   return (
-    <div className="p-5 shadow-lg min-w-48">
+    <div className="p-5 shadow-lg min-w-48 sticky top-20 h-screen overflow-hidden">
       <ul>
         <Link to={"/"}>
           <li>Home</li>

@@ -10,7 +10,7 @@ const Head = () => {
   };
 
   return (
-    <div className="flex justify-between p-5 shadow-lg">
+    <div className="flex justify-between p-5 shadow-lg sticky top-0 w-screen bg-white overflow-hidden">
       {/* Logo and SideBar */}
       <div className="flex gap-2">
         <img
