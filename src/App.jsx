@@ -1,6 +1,6 @@
 import { Provider } from "react-redux";
 import Body from "./Components/Body";
-import Head from "./Components/Head";
+import SearchPage from "./Components/SearchPage"
 import "./index.css";
 import store from "./Utils/store";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -21,13 +21,17 @@ function App() {
           path: "/watch/:videoId",
           element: <WatchPage />,
         },
+        {
+          path: "/search",
+          element: <SearchPage />,
+        }
       ],
     },
   ]);
   return (
     <>
       <Provider store={store}>
-        <Head />
+        {/* <Head /> */}
         <RouterProvider router={appRouter} />
         {
           // Head

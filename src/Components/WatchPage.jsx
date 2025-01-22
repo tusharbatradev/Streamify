@@ -31,7 +31,7 @@ const WatchPage = () => {
   const { snippet } = video;
 
   return (
-    <div className="p-8 px-8 flex w-full gap-16">
+    <div className="p-8 px-16 flex w-full gap-4">
       {/* Video Details */}
       <div className="w-[1100px] sticky top-0 h-screen overflow-hidden">
         <iframe

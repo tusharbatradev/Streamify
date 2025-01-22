@@ -1,12 +1,38 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { toggleMenu } from "../Utils/appSlice";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setSearchValue, setSearchVideos, toggleMenu } from "../Utils/appSlice";
+import { GOOGLE_API_KEY, SEARCH_BY_NAME } from "../Utils/constants";
+import { useNavigate } from "react-router-dom";
 
 const Head = () => {
   const dispatch = useDispatch();
+  const searchValue = useSelector((state) => state.app.searchValue);
+  const navigate = useNavigate();
 
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
+  };
+
+  const handleInputChange = (e) => {
+    dispatch(setSearchValue(e.target.value));
+  };
+
+  const getSearchedVideos = async () => {
+    if (searchValue.trim()) {
+      try {
+        const data = await fetch(
+          `${SEARCH_BY_NAME}${encodeURIComponent(
+            searchValue
+          )}&key=${GOOGLE_API_KEY}`
+        );
+        const json = await data.json();
+        dispatch(setSearchVideos(json.items));
+        navigate("/search")
+        console.log("Searched Videos:", json.items);
+      } catch (error) {
+        console.error("Error fetching searched videos:", error);
+      }
+    }
   };
 
   return (
@@ -33,8 +59,14 @@ const Head = () => {
         <input
           className="border-2 border-gray-400 w-[500px] h-10 rounded-l-3xl px-2"
           type="text"
+          value={searchValue}
+          onChange={handleInputChange}
         />
-        <button className="bg-gray-400 text-white p-2 px-4 h-10 rounded-r-3xl">
+
+        <button
+          className="bg-gray-400 text-white p-2 px-4 h-10 rounded-r-3xl"
+          onClick={getSearchedVideos}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20px"
