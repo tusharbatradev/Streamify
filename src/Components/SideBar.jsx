@@ -1,6 +1,15 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import {
+  GamingIcon,
+  HomeIcon,
+  MusicIcon,
+  ShoppingIcon,
+  ShortsIcon,
+  SportsIcon,
+  SubscriptionIcon,
+} from "../Utils/icons";
 
 const SideBar = () => {
   const isMenuOpen = useSelector((state) => state.app.isMenuOpen);
@@ -10,25 +19,31 @@ const SideBar = () => {
 
   return (
     <div className="p-5 shadow-lg min-w-48 sticky top-20 h-screen overflow-hidden">
-      <ul>
+      <ul className="flex flex-col gap-4">
         <Link to={"/"}>
-          <li>Home</li>
+          <li className="flex text-xl gap-8 items-center">{HomeIcon}Home </li>
         </Link>
-        <li>Shorts</li>
-        <li>Videos</li>
-        <li>Live</li>
+        <li className="flex text-xl gap-8 items-center">{ShortsIcon}Shorts</li>
+        <li className="flex text-xl gap-8 items-center">
+          {SubscriptionIcon}Subscription
+        </li>
       </ul>
 
-      <h1 className="font-bold pt-5">Subscriptions</h1>
-      <ul>
-        <li>Music</li>
-        <li>Sports</li>
-        <li>Gaming</li>
-        <li>Movies</li>
+      <div class="border-t-2 border-gray-500 my-4 w-[100%]"></div>
+
+      <ul className="flex flex-col gap-4">
+        <h2 className="font-bold pt-5 text-xl ">Explore</h2>
+        <li className="flex text-xl gap-8 items-center">{MusicIcon}Music</li>
+        <li className="flex text-xl gap-8 items-center">{SportsIcon}Sports</li>
+        <li className="flex text-xl gap-8 items-center">{GamingIcon}Gaming</li>
+        <li className="flex text-xl gap-8 items-center">
+          {ShoppingIcon}Shopping
+        </li>
       </ul>
 
-      <h1 className="font-bold pt-5">Watch Later</h1>
-      <ul>
+      <div class="border-t-2 border-gray-500 my-4 w-[100%]"></div>
+
+      <ul className="flex flex-col gap-4">
         <li>Music</li>
         <li>Sports</li>
         <li>Gaming</li>
